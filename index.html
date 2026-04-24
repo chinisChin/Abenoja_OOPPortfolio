@@ -481,11 +481,9 @@ public class SimpleWalletAbenoja {
 
     <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
         <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
-        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
-             
-        </p>
+
         <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
-            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+            This activity is where we learned to use the <strong>user input methods</strong>, which are a big help to my programming journey. It was "for sure" something that I will use in the near future. 
         </p>
     </div>
             <hr class="activity-separator">
@@ -495,7 +493,7 @@ public class SimpleWalletAbenoja {
             </div>
 
         
-     <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+     <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;overflow: hidden; width: 100%;">
 <pre>
 package javaUno;
 
@@ -564,14 +562,102 @@ public class GradeEvaluationAbenoja {
     </div>
      <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
         <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
-        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
-             
-        </p>
+
         <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
-            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+            This is quite the harder level for activity 3, I also enjoyed doing this activity. It made me appreciate java even more and also my skills.<br>I also learned that I enjoy doing java coding like this. We made a grading system where it automatically calculates the grades based on the input of the user/student. 
         </p>
     </div>
-                </div>
+            <hr class="activity-separator">
+
+            <div class="activity-block">
+                <h3 style="color: var(--accent-primary);">Activity #5: Personal Expense Tracker</h3>
+            </div>
+
+        
+     <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;overflow: hidden; width: 100%;">
+<pre>
+    package javaUno;
+
+import java.util.Scanner;
+
+public class ExpenseTrackerAbenoja {
+	
+	public static void display() {
+		System.out.println("====Expense Tracker====");
+	}
+	
+    public static int Total(int food, int transpo, int other) {
+    	
+    	int sum = food + transpo + other;
+    	
+    	return sum;
+    }
+    
+    public static String budget(int expense) {
+    	
+    	int budget = 5000;
+    	
+    	if(budget < expense) {
+    		return "Exceeded your budget";
+    	}
+    	return "Within the budget";
+    }
+    
+    public static void both(int Totexpense, String status) {
+    	System.out.println("Your total expenses for the food, transportation and others is " + Totexpense);
+    	
+    	
+    	System.out.println("Your Budget Status is: " + status);
+    }
+    
+    public static int remain(int total) {
+    	
+    	int current = 5000 - total;
+    	
+    	return current;
+    }
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		
+		display();
+		
+		System.out.println("List down your expenses: ");
+		System.out.println("Food: ");
+		int food = input.nextInt();
+		
+		System.out.println("Transportation: ");
+		int transpo = input.nextInt();
+		
+		System.out.println("Other Expenses: ");
+		int other = input.nextInt();
+		
+		int result = Total(food, transpo, other);
+		
+		System.out.println("The total expense is: " + result);
+		
+		String status = budget(result);
+		System.out.println("Did you exceed or not?: " + status);
+		
+		both(result, status);
+		
+		int current = remain(result);
+		System.out.println("Your remaining budget is : "+ current);
+		
+	}
+
+}
+</pre>
+
+    </div>
+     <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            I honestly just enjoyed the process on creating this activity, it just required me a lot of methods but all in all it was just an easy coding activity for me after going through the past activities.
+        </p>
+    </div>
+                
             </div>
     </div>          
 
