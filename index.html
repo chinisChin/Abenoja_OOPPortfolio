@@ -690,19 +690,33 @@ public class ExpenseTrackerAbenoja {
             <span class="close-btn" onclick="closeModal('quizModal')">&times;</span>
             <h2 style="color: var(--accent-dark);">Midterm Quizzes</h2>
             <div class="activity-block" style="margin-top:20px;">
-                <h3>Quiz #1: [Title]</h3>
-                <p>[Insert content here]</p>
+                <h3>Midterm Quiz #1: </h3>
+                <p><strong>Score:</strong> 23/30</p>
             </div>
+
+            <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+               <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+
+                 <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+                  I did review on this quiz but I still did not get a higher score. I think I lack to understand the other concepts but I made sure to do well on the next quizzes or activities/seatworks.
+        </p>
+    </div>
+
             <hr class="activity-separator">
             <div class="activity-block">
-                <h3>Quiz #2: [Title]</h3>
-                <p>[Insert content here]</p>
+                <h3>Midterm Quiz #2:</h3>
+                <p><strong>Score:</strong> 41/45 <br>
+                Only took 18 min for this attempt</p>
             </div>
-            <hr class="activity-separator">
-            <div class="activity-block">
-                <h3>Quiz #3: [Title]</h3>
-                <p>[Insert content here]</p>
-            </div>
+
+            <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+               <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+
+                 <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+                  I did well on this quiz as it was just all about the things that we have learned from the very start up to module 6. 
+        </p>
+    </div>
+
         </div>
     </div>
 
@@ -712,9 +726,16 @@ public class ExpenseTrackerAbenoja {
             <h2 style="color: var(--accent-dark);">Midterm Seatwork</h2>
             <div class="activity-block" style="margin-top:20px;">
                 <h3>Seatwork #1: </h3>
-                <p>[Insert content here]</p>
+                <p><strong>Score:</strong> 30/30</p>
             </div>
 
+         <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+               <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+
+                 <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+                  The seatwork was to answer the operations that were given to us. And I did get confused at first but after figuring everything out, I made sure to do the seatwork and computations correctly. 
+        </p>
+    </div>
             <hr class="activity-separator">
             <div class="activity-block">
                 <h3>Seatwork #2: Basic ATM System</h3>
@@ -801,14 +822,80 @@ public class ATMTransactionCounterAbenoja {
 }
 </pre>
              </div>
-             
+
+             <a href="pdf/BasicWallet.pdf" target="_blank" class="btn-open">
+   View Basic Wallet System PDF →
+</a>
             <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
         <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
         <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
              
         </p>
         <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
-            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+            I had a hard time doing this seatwork. But it was a great practice for my coding skills as well. In this seatwork we had to explain the functions of each item that we used. Like the while loop, if-else etc.
+        </p>
+    </div>
+
+    <hr class="activity-separator">
+            <div class="activity-block">
+                <h3>Seatwork #3: Student Age Analyzer</h3>
+            </div>
+
+             <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+import java.util.Scanner;
+
+public class StudentAgeAnalyzerAbenoja {
+	
+	public static String Age(int num) {
+		
+		if (num < 0) {
+			return "Invalid Age";
+	    }else if (num <= 12) {
+			return "Child";
+		}else if(num <= 19) {
+			return "Teenager";
+		}else if(num >=20 || num <=59) {
+			return "Adult";
+		}else {
+			return "Senior Citizen";
+		}
+}
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Student Name: ");
+		String name = input.nextLine();
+		
+		System.out.println("Age: ");
+		int age = input.nextInt();
+		
+		System.out.println("Age Category is: " + Age(age));
+
+	}
+
+}
+
+</pre>
+             </div>
+
+<img src="images/StudAge.png" alt="Bitwise Operation Source" style="max-width: 100%; height: auto; margin-top: 15px; border: 1px solid var(--surface-color);">
+<br>
+             <a href="pdf/StudentAge.pdf" target="_blank" class="btn-open">
+   View Student Age Analyzer PDF →
+</a>
+
+            <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+             
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            I had a hard time doing this seatwork. But it was a great practice for my coding skills as well. In this seatwork we had to explain the functions of each item that we used. Like the while loop, if-else etc.
         </p>
     </div>
 
@@ -819,9 +906,9 @@ public class ATMTransactionCounterAbenoja {
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('examModal')">&times;</span>
             <h2>Midterm Exam</h2><br>
-            <p><strong>Results:</strong> [Insert exam reflections here]</p>
+            <p><strong>Results:</strong> I was so happy because I knew that I did great. All the lessons that were discussed to us were the ones at the midterm exam. But I got quite confused on the operators part but <em>all is well</em>.</p>
         </div>
-    </div>
+    </div>]
 
     <section id="final" class="full-section">
         <h2>Final Period</h2>
@@ -834,15 +921,16 @@ public class ATMTransactionCounterAbenoja {
     <div class="contact-container">
         <h2>Get In Touch</h2>
         <a href="mailto:abenojachingmae@gmail.com" class="contact-link">Gmail: abenojachingmae@gmail.com</a>
-        <a href="https://facebook.com/chingmaeabenoja" class="contact-link" target="_blank">Facebook: Ching Mae Abenoja</a>
+        <a href="https://www.facebook.com/ching.mae.abenoja.2024/" class="contact-link" target="_blank">Facebook: Ching Mae Abenoja</a>
+        <a href="https://github.com/chinisChin"class="contact-link">Github: chinisChin</a>
     </div>
 </section>
 
     <footer>&copy; 2026 Abenoja - BSIT Object-Oriented Programming E-Portfolio</footer>
 
     <script>
-        const introText = "This e-portfolio presents my Midterm Project in Object-Oriented Programming. It includes quizzes, activities, and exams that demonstrate my understanding of OOP concepts.";
-        const speed = 50; // Delay in milliseconds between characters
+        const introText = "Hi, I am Ching Mae Abenoja from BSIT 2-1. This is my e-portfolio which presents my Midterm Project in Object-Oriented Programming. It includes quizzes, activities, and exams that demonstrate my understanding of OOP concepts.";
+        const speed = 50; 
         let i = 0;
 
         function typeWriter() {
