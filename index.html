@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Lora:ital@1&display=swap" rel="stylesheet">
@@ -163,6 +165,28 @@
     .grid-container { padding: 20px 5%; }
     .contact-container { width: 90%; padding: 20px; }
     nav ul { gap: 15px; }
+}
+.contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the whole row */
+    gap: 12px;               /* Space between icon and text */
+    margin: 15px 0;
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-link ion-icon {
+    font-size: 1.5rem;       /* Makes the logo slightly larger than text */
+    color: var(--accent-primary);
+}
+
+/* Hover effect to match your rose cursor theme */
+.contact-link:hover {
+    color: var(--accent-primary);
+    transform: translateY(-3px);
 }
 
 pre {
@@ -920,9 +944,14 @@ public class StudentAgeAnalyzerAbenoja {
 <section id="contact" class="full-section">
     <div class="contact-container">
         <h2>Get In Touch</h2>
-        <a href="mailto:abenojachingmae@gmail.com" class="contact-link">Gmail: abenojachingmae@gmail.com</a>
-        <a href="https://www.facebook.com/ching.mae.abenoja.2024/" class="contact-link" target="_blank">Facebook: Ching Mae Abenoja</a>
-        <a href="https://github.com/chinisChin"class="contact-link">Github: chinisChin</a>
+
+        <a href="mailto:abenojachingmae@gmail.com" class="contact-link">
+            <ion-icon name="mail-outline"></ion-icon> Gmail: abenojachingmae@gmail.com</a>
+
+        <a href="https://www.facebook.com/ching.mae.abenoja.2024/" class="contact-link" target="_blank"><ion-icon name="logo-facebook"></ion-icon>
+            Facebook: Ching Mae Abenoja</a>
+
+        <a href="https://github.com/chinisChin"class="contact-link"><ion-icon name="logo-github"></ion-icon>Github: chinisChin</a>
     </div>
 </section>
 
