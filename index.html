@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Lora:ital@1&display=swap" rel="stylesheet">
+    <title>Abenoja, ChingMae | E-portfolio OOP</title>
+    <style>
+        :root {
+            --bg-color: #E8D8C4;
+            --card-bg: #FFFFFF;
+            --text-main: #2D2424;
+            --accent-dark: #561C24;
+            --accent-primary: #6D2932;
+            --surface-color: #C7B7A3;
+            --nav-bg: #561C24;
+            --nav-text: #E8D8C4;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1515;
+            --card-bg: #2d2424;
+            --text-main: #E8D8C4;
+            --accent-dark: #E8D8C4;
+            --accent-primary: #C7B7A3;
+            --surface-color: #561C24;
+            --nav-bg: #000000;
+            --nav-text: #E8D8C4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: url('https://img.icons8.com/emoji/32/dahlia.png'), auto;
+        }
+
+        a:hover, button:hover {
+            cursor: url('https://img.icons8.com/emoji/32/rose.png'), pointer;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            transition: background 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { color: var(--nav-text); font-family: 'Lora', serif; font-weight: bold; }
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+        nav ul li a { color: var(--nav-text); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; position: relative; }
+        nav ul li a:hover::after { content: '🌹'; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 1rem; }
+
+        #theme-toggle {
+            background: var(--surface-color);
+            border: none;
+            padding: 5px 12px;
+            color: var(--nav-text);
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        #contact {
+    /* A soft gradient that shifts with the theme */
+    background: radial-gradient(circle at top left, var(--surface-color) 0%, transparent 70%),
+                radial-gradient(circle at bottom right, var(--accent-primary) 0%, transparent 70%);
+    position: relative;
+    overflow: hidden;
+    padding: 20px 10%;
+    border-radius: 70px 70px 70px 70px; /* Curves the top of the section */
+}
+
+/* Creating a "glass" card for the contact info */
+.contact-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* ADJUST THESE TO CHANGE SIZE */
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    
+    /* CENTERING */
+    margin: 0 auto;
+    display: block;
+    
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+#contact h2 {
+    margin-bottom: 20px;
+    color:#2d2424;
+}
+
+.contact-link {
+    display: block;
+    margin: 10px 0;
+    color:#561C24;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-link:hover {
+    transform: scale(1.05);
+    color: var(--bg-color);
+}
+
+        .main-pill {
+            background-color: var(--accent-dark);
+            color: var(--bg-color);
+            padding: 40px 60px;
+            border-radius: 70px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            margin-bottom: 30px;
+            border: 1px solid var(--surface-color);
+            min-width: 80%;
+        }
+
+        .pill-name { font-size: 5rem; margin-bottom: 10px; font-family: 'Lora', serif; letter-spacing: 1px; }
+        .pill-divider { height: 1px; width: 60%; background-color: var(--surface-color); margin: 15px auto; opacity: 0.5; }
+        .pill-details { font-family: 'Inter', sans-serif; font-size: 1.1rem; line-height: 1.6; font-weight: 300; }
+        .pill-details span { font-weight: 600; color: var(--surface-color); }
+        .pill-details small { display: block; margin-top: 8px; font-size: 0.8rem; opacity: 0.8; }
+
+        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 40px 10%; }
+        .card { background-color: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; text-align: left; }
+        .card:hover { transform: translateY(-10px); }
+        .btn-open { margin-top: 15px; display: inline-block; color: var(--accent-primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; border: none; background: none; }
+
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--card-bg); margin: 5% auto; padding: 30px; border-radius: 15px; width: 80%; max-height: 85vh; overflow-y: auto; color: var(--text-main); position: relative; }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 2rem; font-weight: bold; color: var(--accent-primary); }
+
+        .reflection-box { background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px; margin-top: 20px; }
+        .activity-separator { border: none; border-top: 2px dashed var(--surface-color); margin: 40px 0; opacity: 0.4; }
+
+        .full-section { padding: 80px 10%; text-align: center; }
+        footer { text-align: center; padding: 40px; font-size: 0.8rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">CHING | OOP</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#midterm">Midterm</a></li>
+            <li><a href="#final">Final</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button id="theme-toggle">Dark Mode</button></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="main-pill">
+            <h1 class="pill-name">Ching Mae F. Abenoja</h1>
+            <div class="pill-divider"></div>
+            <p class="pill-details">Object-Oriented Programming <br> <span>BSIT 2-1</span> <br> <small>Polytechnic University of the Philippines - Sta. Mesa, Manila</small></p>
+        </div>
+        <p class="hero-intro" id="typing-text"></p>
+    </section>
+
+    <section id="midterm">
+        <h2 style="text-align:center; display:block; margin-bottom: 20px;">Midterm Collection</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Midterm Quizzes</h3>
+                <p>Questions, answers, and explanations.</p>
+                <button class="btn-open" onclick="openModal('quizModal')">View Quizzes →</button>
+            </div>
+            <div class="card">
+                <h3>Midterm Activities</h3>
+                <p>Java programs and code analysis.</p>
+                <button class="btn-open" onclick="openModal('activityModal')">View Activities →</button>
+            </div>
+            <div class="card">
+                <h3>Midterm Seatwork</h3>
+                <p>In-class coding exercises and logic.</p>
+                <button class="btn-open" onclick="openModal('seatworkModal')">View Seatwork →</button>
+            </div>
+            <div class="card">
+                <h3>Midterm Exam</h3>
+                <p>Answers and code from the assessment.</p>
+                <button class="btn-open" onclick="openModal('examModal')">View Exam →</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('activityModal')">&times;</span>
+            <h2 style="color: var(--accent-dark); border-bottom: 2px solid var(--accent-primary); display: inline-block;">Midterm Activities</h2>
+
+            <div class="activity-block" style="margin-top: 30px;">
+                <h3 style="color: var(--accent-primary);">Activity #1: Variables</h3>
+                <div style="display: flex; gap: 15px; margin: 20px 0;">
+                    <img src="Act1_1.jpg" alt="Activity1_CodeAnalysis" style="width: 50%; border-radius: 8px; border: 2px solid var(--surface-color);">
+                    <img src="Act1_2.jpg" alt="Act1_2 Code Analysis" style="width: 50%; border-radius: 8px; border: 2px solid var(--surface-color);">
+                </div>
+                <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+                    <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+                    <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+                    In this activity, I investigated how Java handles data using the <strong>Stack</strong> and <strong>Heap</strong>. I discovered that the actual object data (such the name "John" or "Maria") is allocated in the Heap, whilst local reference variables like <em>s1, s2, and s3</em> are stored on the Stack.
+                    <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+                    </p>Understanding object references was a crucial lesson: when I assigned s3 = s2, it only made s3 point to the same memory place as s2 rather than creating a new object. As a result, changing the name on S3 to "Ana" also altered the name on S2, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing.</p>
+                    </>
+                </div>
+            </div>
+
+            <hr class="activity-separator">
+
+          <div class="activity-block">
+    <h3 style="color: var(--accent-primary);">Activity #2: Operators</h3>
+
+    <h4 style="color:var(--nav-bg);">1. Java program using bitwise operators producing: true,10,false,15</h4>
+    
+    <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+public class bitwise {
+    public static void main(String[] args) {
+        
+        boolean bitWise = true & true;
+        boolean bit2wise = false | false;
+        
+        int a = 14;
+        int b = 11;
+        int c = 10;
+        int d = 5;
+        
+        int Result = a & b;
+        int Bresult = c | d;
+        
+        System.out.println(bitWise + "," + Result + "," + bit2wise + "," + Bresult);
+    }
+}
+</pre>
+
+    </div>
+
+    <h4 style="color:var(--nav-bg);">2. Java program using ternary operators producing: true, false, 25, 30.</h4>
+
+    <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+
+    
+
+<pre>
+package javaUno;
+
+public class ternary {
+
+	public static void main(String[] args) {
+		int a = 25;
+		int b = 30;
+		
+		String outcome = (a<b)?"true":"false";
+		
+		int min = (a<b)?a:b;
+		
+		String result = (b<a)?"true":"false";
+		
+		int max = (b>a)?b:a;
+		
+		System.out.println(outcome +","+result+","+min+","+max);
+
+	}
+
+}
+</pre>
+    </div>
+
+     <h4 style="color:var(--nav-bg);">3. Java program using assignment operators producing: Addition: 
+120, Subtraction: 70, Multiplication: 144, Division: 16. </h4>
+    
+    <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+public class assignment {
+
+	public static void main(String[] args) {
+		int a = 60;
+		int b = 100;
+		int c = 8;
+		int d = 144;
+		
+		a+=60;
+		b-=30;
+		c*=18;
+		d/=9;
+		
+		System.out.println("Addition:"+ a+","+"Subtraction:"+ b+","+"Multiplication:"+ c+","+"Division:"+ d);
+
+	}
+
+}
+</pre>
+
+    </div>
+<h4 style="color:var(--nav-bg);">Part 2: </h4>
+    
+
+    
+    <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+public class Part2 {
+
+	public static void main(String[] args) {
+		int rel = 22;
+		int git = 12;
+		int x = 7;
+		int y = 6;
+		int z = 18;
+		boolean correct = false & true;
+		
+		
+		System.out.println(correct);
+		System.out.println(rel != git || git <= z );
+		System.out.println(x++ + --y);
+		System.out.println(++y + x--);
+		System.out.println(z%x);
+		System.out.println(z >> rel);
+		
+
+	}
+
+}
+
+</pre>
+
+    </div>
+
+</pre>
+
+    </div>
+
+    <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+             
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+        </p>
+    </div>
+
+
+
+            <hr class="activity-separator">
+
+            <div class="activity-block">
+                <h3 style="color: var(--accent-primary);">Activity #3: Simple Wallet System</h3>
+            </div>
+    
+    <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+import java.util.Scanner;
+
+public class SimpleWalletAbenoja {
+
+	public static void main(String[] args) {
+		
+		double initial = 3000.00;
+		int count = 1;
+		boolean correct = true;
+		
+		Scanner input = new Scanner(System.in);
+		
+		while (correct) {
+			
+			System.out.println("=====WALLET MENU====");
+			System.out.println("1. View Balance");
+			System.out.println("2. Add Money");
+			System.out.println("3. Spend Money");
+			System.out.println("4. Exit");
+			System.out.println("Please select one (1-4): ");
+			
+			int choice = input.nextInt();
+			
+			switch(choice) {
+			case 1:
+				System.out.println("Transaction "+ count);
+				System.out.println("Your current balance is : " + initial);
+				count++;
+				break;
+				
+			case 2:
+				System.out.println("Transaction "+ count);
+				System.out.println("Enter Amount: ");
+				double curr = input.nextDouble();
+				if(curr >= 0) {
+					initial+=curr;
+					System.out.println("Added Amount Succesfully!");
+					count++;
+				}else {
+					System.out.println("Invalid Amount!!!");
+				}
+				break;
+				
+			case 3:
+				System.out.println("Transaction "+ count);
+				System.out.println("Enter Amount to Spend: ");
+				double spend = input.nextDouble();
+				if(spend > initial) {
+					System.out.println("Error: Amount exceeds balance");
+				}else if (spend > 1000.00) {
+					System.out.println("Error:Maximum spending amount is only 1,000");
+				}else {
+					initial -= spend;
+					System.out.println("Money Spent Succesfully!");
+					count++;
+				}
+				break;
+			case 4:
+				System.out.println("Exiting Wallet System");
+				System.out.println("Transaction Count is "+ --count);
+				correct = false;
+				break;
+				
+			default:
+				System.out.println("Invalid Choice. Please choose 1-4 ONLY!");
+		
+			}
+			
+			
+		}
+
+	}
+
+}
+
+
+
+</pre>
+
+    </div>
+
+    <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+             
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+        </p>
+    </div>
+            <hr class="activity-separator">
+
+            <div class="activity-block">
+                <h3 style="color: var(--accent-primary);">Activity #4: Grade Evaluation System</h3>
+            </div>
+
+        
+     <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+package javaUno;
+
+import java.util.Scanner;
+
+public class GradeEvaluationAbenoja {
+
+	public static void main(String[] args) {
+		double prelim = 85;
+	    double midterm = 78;
+		double finals = 90;
+		boolean correct = true;
+		int count = 1;
+		
+		Scanner input = new Scanner(System.in);
+		
+		while (correct) {
+			   System.out.println("Prelim Grade: ");
+			   double Prelim = input.nextDouble();
+			
+			   System.out.println("Midterm Grade: ");
+			   double Midterm = input.nextDouble();
+			
+			   System.out.println("Final Grade: ");
+			   double Finals = input.nextDouble();
+			   count++;
+			   
+			   double average = (Prelim + Midterm + Finals)/3;
+			
+		        if(average >= 90 && average <=100) {
+				  System.out.println("Average: "+ average);
+				  System.out.println("Remarks : Excellent");
+			    }else if (average >= 80 && average <=89) {
+				   System.out.println("Average: "+ average);
+				   System.out.println("Remarks: Good");
+			    }else if (average >=75 && average <=79) {
+				  System.out.println("Average: "+ average);
+				  System.out.println("Remarks: Fair");
+			    }else {
+				  System.out.println("Average: "+ average);
+				  System.out.println("Remarks: Failed");
+			    }
+		    
+		    System.out.println("Evaluate more?");
+			String choice = input.next();
+		    if(choice.equalsIgnoreCase("yes")) {
+				continue;
+		    }else if (choice.equalsIgnoreCase("no")) {
+				System.out.println("Transaction count: "+ (count-1));
+				break;
+			}else {
+				System.out.println("Invalid Answer");
+		        correct = false;
+                
+			}
+			
+	        
+		}
+
+	}
+
+}
+
+</pre>
+
+    </div>
+     <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+             
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+        </p>
+    </div>
+                </div>
+            </div>
+    </div>          
+
+
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('quizModal')">&times;</span>
+            <h2 style="color: var(--accent-dark);">Midterm Quizzes</h2>
+            <div class="activity-block" style="margin-top:20px;">
+                <h3>Quiz #1: [Title]</h3>
+                <p>[Insert content here]</p>
+            </div>
+            <hr class="activity-separator">
+            <div class="activity-block">
+                <h3>Quiz #2: [Title]</h3>
+                <p>[Insert content here]</p>
+            </div>
+            <hr class="activity-separator">
+            <div class="activity-block">
+                <h3>Quiz #3: [Title]</h3>
+                <p>[Insert content here]</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="seatworkModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('seatworkModal')">&times;</span>
+            <h2 style="color: var(--accent-dark);">Midterm Seatwork</h2>
+            <div class="activity-block" style="margin-top:20px;">
+                <h3>Seatwork #1: </h3>
+                <p>[Insert content here]</p>
+            </div>
+
+            <hr class="activity-separator">
+            <div class="activity-block">
+                <h3>Seatwork #2: Basic ATM System</h3>
+            </div>
+
+             <div style="background: #2D2424; color: #E8D8C4; padding: 25px; font-family: 'Courier New', monospace; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">
+<pre>
+    package javaUno;
+
+import java.util.Scanner;
+
+public class ATMTransactionCounterAbenoja {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		double balance = 8000.0;
+        int count = 0;
+        boolean active = true;
+
+        Scanner input = new Scanner(System.in);
+      
+        while (active) {
+            // 1. Display Menu
+            System.out.println("\n===== ATM MENU =====");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            System.out.print("Select: ");
+
+    
+            int input = input.nextInt();
+            
+     
+            switch (input) {
+                case "1":
+                    System.out.println("Current Balance: PHP " + balance);
+                    count++;
+                    break;
+
+                case "2":
+                    System.out.print("Enter deposit amount: ");
+                    // Parsing the string input to a double
+                    double dep = Double.parseDouble(System.console().readLine());
+                    if (dep > 0) {
+                        balance += dep;
+                        System.out.println("Deposit successful!");
+                        count++;
+                    } else {
+                        System.out.println("Invalid deposit amount.");
+                    }
+                    break;
+
+                case "3":
+                    System.out.print("Enter withdrawal amount: ");
+                    double draw = Double.parseDouble(System.console().readLine());
+
+                    // 3. if-else for validating withdrawal constraints
+                    if (draw > 2000) {
+                        System.out.println("Error: Maximum withdrawal per transaction is 2,000 pesos.");
+                    } else if (draw > balance) {
+                        System.out.println("Error: Amount exceeds balance.");
+                    } else if (draw <= 0) {
+                        System.out.println("Error: Invalid amount.");
+                    } else {
+                        balance -= draw;
+                        System.out.println("Withdrawal successful.");
+                        count++;
+                    }
+                    break;
+
+                case "4":
+                    // 4. Display total transactions performed before exiting
+                    System.out.println("Exiting program...");
+                    System.out.println("Total transactions performed: " + count);
+                    active = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please choose 1-4.");
+            }
+        }
+    }
+}
+</pre>
+             </div>
+             
+            <div class="reflection-box" style="background-color: var(--accent-dark); color: var(--bg-color); border-left: 5px solid var(--accent-primary); padding: 25px; border-radius: 8px;">
+        <h4 style="margin-bottom: 12px; font-family: 'Lora', serif; font-style: italic; letter-spacing: 1px;">Learnings & Reflections:</h4>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px;">
+             
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.8; text-indent: 40px; margin-top: 10px;">
+            Understanding object references was a crucial lesson: when I assigned <em>s3 = s2</em>, it only made <em>s3</em> point to the same memory place as <em>s2</em> rather than creating a new object. As a result, changing the name on <em>s3</em> to "Ana" also altered the name on <em>s2</em>, highlighting the significance of <strong>exercising caution</strong> when it comes to object aliasing[cite: 8].
+        </p>
+    </div>
+
+        </div>
+    </div>
+
+    <div id="examModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('examModal')">&times;</span>
+            <h2>Midterm Exam</h2><br>
+            <p><strong>Results:</strong> [Insert exam reflections here]</p>
+        </div>
+    </div>
+
+    <section id="final" class="full-section">
+        <h2>Final Period</h2>
+        <div class="card" style="margin: 0 auto; max-width: 600px; text-align: center; border-left: none;">
+            <p><em>Final outputs will be updated as the semester progresses.</em></p>
+        </div>
+    </section>
+
+<section id="contact" class="full-section">
+    <div class="contact-container">
+        <h2>Get In Touch</h2>
+        <a href="mailto:abenojachingmae@gmail.com" class="contact-link">Gmail: abenojachingmae@gmail.com</a>
+        <a href="https://facebook.com/chingmaeabenoja" class="contact-link" target="_blank">Facebook: Ching Mae Abenoja</a>
+    </div>
+</section>
+
+    <footer>&copy; 2026 Abenoja - BSIT Object-Oriented Programming E-Portfolio</footer>
+
+    <script>
+        const introText = "This e-portfolio presents my Midterm Project in Object-Oriented Programming. It includes quizzes, activities, and exams that demonstrate my understanding of OOP concepts.";
+        const speed = 50; // Delay in milliseconds between characters
+        let i = 0;
+
+        function typeWriter() {
+          if (i < introText.length) {
+           document.getElementById("typing-text").innerHTML += introText.charAt(i);
+           i++;
+           setTimeout(typeWriter, speed);
+    }
+}
+
+// Start the animation when the window loads
+window.addEventListener('load', typeWriter);
+
+        function openModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                toggleBtn.innerText = 'Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = 'Light Mode';
+            }
+        });
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌸';
+            petal.style.position = 'fixed';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-5vh';
+            petal.style.fontSize = Math.random() * 10 + 10 + 'px';
+            petal.style.opacity = Math.random();
+            petal.style.zIndex = '-1';
+            petal.style.transition = 'transform 5s linear, top 5s linear';
+            document.body.appendChild(petal);
+            setTimeout(() => {
+                petal.style.top = '105vh';
+                petal.style.transform = `translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)`;
+            }, 100);
+            setTimeout(() => { petal.remove(); }, 6000);
+        }
+        setInterval(createPetal, 300);
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') { event.target.style.display = "none"; }
+        }
+    </script>
+</body>
+</html>
